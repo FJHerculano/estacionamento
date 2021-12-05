@@ -107,7 +107,18 @@
         <script src="<?php echo base_url('public/js/widgets.js') ?>"></script>
         <script src="<?php echo base_url('public/js/charts.js') ?>"></script>
         -->
-        <script src="<?php echo base_url('public/dist/js/theme.min.js') ?>"></script>
-     
+
+        <script src="<?php echo base_url('public/dist/js/theme.min.js'); ?>"></script>
+        
+        <!-- script para renderizar search e demais componentes java script -->
+        <?php if (isset($scripts)) : ?>
+ 
+            <?php foreach ($scripts as $script): ?>
+
+                <script type="text/javascript" src="<?php echo base_url('public/' . $script); ?>"></script>
+
+            <?php endforeach; ?>
+
+        <?php endif; ?>
     </body>
 </html>

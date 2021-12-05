@@ -58,11 +58,11 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database', 'ion_auth', 'form_validation');
 
 /*
 | -------------------------------------------------------------------
-|  Auto-load Drivers
+|  Auto-load Drivers 
 | -------------------------------------------------------------------
 | These classes are located in system/libraries/ or in your
 | application/libraries/ directory, but are also placed inside their
@@ -89,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url');
+$autoload['helper'] = array('url', 'funcao', 'form');
 
 /*
 | -------------------------------------------------------------------
