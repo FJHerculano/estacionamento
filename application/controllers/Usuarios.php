@@ -55,12 +55,12 @@ class Usuarios extends CI_Controller {
 			} else {
 				// Se entrou no else, é por que existe e vai ser editado
 
-				// Validação de campos
-				$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[5]|max_length [20]');
+				// Validação de campos                                
+				$this->form_validation->set_rules('first_name','Nome',    'trim|required|min_length[5]|max_length [20]');
 				$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[5]|max_length [20]');
-				$this->form_validation->set_rules('username','Usuario','trim|required|min_length[5]|max_length [30]');
-				$this->form_validation->set_rules('email','E-mail','trim|valid_email|required|min_length[5]|max_length [200]');
-				$this->form_validation->set_rules('password', 'Senha', 'trim|min_length[8]');
+				$this->form_validation->set_rules('username','Usuario',   'trim|required|min_length[5]|max_length [30]');
+				$this->form_validation->set_rules('email','E-mail',       'trim|valid_email|required|min_length[5]|max_length [200]');
+				$this->form_validation->set_rules('password', 'Senha',    'trim|min_length[8]');
 				$this->form_validation->set_rules('confirmacao', 'Confirmação', 'trim|matches[password]');
 
 

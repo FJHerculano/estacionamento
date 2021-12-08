@@ -61,7 +61,7 @@ i  <!-- caminho Navbar -->
                                         <div class="col-md-6 mb-20">
                                                 <label >Nome</label>
                                                 <input type="text" class="form-control" name="first_name" value="<?php echo(isset($usuario) ? $usuario->first_name : set_value('first_name')); ?>" >
-                                                <?php echo form_error('first_ name', '<div class="text-danger">', '</div>') ?>
+                                                <?php echo form_error('first_name', '<div class="text-danger">', '</div>') ?>
                                         </div>
 
                                         <div class="col-md-6 mb-20">
