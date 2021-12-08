@@ -56,12 +56,12 @@ class Usuarios extends CI_Controller {
 				// Se entrou no else, é por que existe e vai ser editado
 
 				// Validação de campos                                
-				$this->form_validation->set_rules('first_name','Nome',    'trim|required|min_length[5]|max_length [20]');
-				$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[5]|max_length [20]');
-				$this->form_validation->set_rules('username','Usuario',   'trim|required|min_length[5]|max_length [30]');
-				$this->form_validation->set_rules('email','E-mail',       'trim|valid_email|required|min_length[5]|max_length [200]');
-				$this->form_validation->set_rules('password', 'Senha',    'trim|min_length[8]');
-				$this->form_validation->set_rules('confirmacao', 'Confirmação', 'trim|matches[password]');
+				$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[5]|max_length[20]');
+				$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[5]|max_length[20]');
+				$this->form_validation->set_rules('username','Usuario','trim|required|min_length[5]|max_length[30]|callback_username_check');
+				$this->form_validation->set_rules('email','E-mail','trim|valid_email|required|min_length[5]|max_length[200]|callback_email_check');
+				$this->form_validation->set_rules('password', 'Senha','trim|min_length[8]');
+				$this->form_validation->set_rules('confirmacao','Confirmação','trim|matches[password]');
 
 
 				if($this->form_validation->run()){
@@ -96,6 +96,45 @@ class Usuarios extends CI_Controller {
 				}
 				
 			}
+		}
+
+	}
+
+	// Função de verificação de username unico, para poder fazer edição e 
+	// a regra de verificar se é unico no banco ser apenas para o cadastro
+	public function username_check($username){
+
+		$usuario_id = $this->input->post('usuario_id');
+		
+		// O meu "se" pega dois parametros que é requisitado na função get_by_id
+		// no arquivo core_model, e eles são 1° a tabela a ser alterada, 2° o array 
+		// de elementos que será trabalhada nesta função em especifico
+		// IMPORTANTE, o array verifica se o campo 'username' e o campo 'id' são iguais para poder dar certo
+		if($this->core_model->get_by_id('users', array('username' => $username, 'id !=' => $usuario_id))){
+			 $this->form_validation->set_message('username_check', 'Esse usuario ja existe');
+			return FALSE;
+		}else{
+			return TRUE;
+		}
+
+	}
+
+
+	// Função de verificação de username unico, para poder fazer edição e 
+	// a regra de verificar se é unico no banco ser apenas para o cadastro
+	public function email_check($email){
+
+		$usuario_id = $this->input->post('usuario_id');
+		
+		// O meu "se" pega dois parametros que é requisitado na função get_by_id
+		// no arquivo core_model, e eles são 1° a tabela a ser alterada, 2° o array 
+		// de elementos que será trabalhada nesta função em especifico
+		// IMPORTANTE, o array verifica se o campo 'username' e o campo 'id' são iguais para poder dar certo
+		if($this->core_model->get_by_id('users', array('email' => $email, 'id !=' => $usuario_id))){
+			 $this->form_validation->set_message('email_check', 'Esse E-mail ja existe');
+			return FALSE;
+		}else{
+			return TRUE;
 		}
 
 	}
