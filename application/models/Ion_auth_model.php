@@ -845,11 +845,13 @@ class Ion_auth_model extends CI_Model
 		// Users table.
 		$data = [
 			$this->identity_column => $identity,
+			'username' => $identity, // não veio como padrão, mas é pra adc username no banco
+
 			'password' => $password,
 			'email' => $email,
 			'ip_address' => $ip_address,
 			'created_on' => time(),
-			'active' => ($manual_activation === FALSE ? 1 : 0)
+			//'active' => ($manual_activation === FALSE ? 1 : 0)
 		];
 
 		// filter out any data passed that doesnt have a matching column in the users table

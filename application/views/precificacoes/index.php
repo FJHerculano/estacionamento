@@ -14,7 +14,7 @@
                             <div class="row align-items-end">
                                 <div class="col-lg-8">
                                     <div class="page-header-title">
-                                        <i class="ik ik-users bg-blue"></i>
+                                        <i class="<?php echo $icone_view; ?> bg-blue"></i>
                                         <div class="d-inline">
                                             <h5><?php echo $titulo; ?></h5>
                                             <span><?php echo $sub_titulo; ?></span>
@@ -78,26 +78,26 @@
                                                 <tr>
 
                                                     <th>#</th>
-                                                    <th>Usuários</th>
-                                                    <th>E-mail</th>
-                                                    <th>Nome</th>
-                                                    <th> Perfil de acesso </th>
-                                                    <th>Ativo</th>
+                                                    <th>Categoria</th>
+                                                    <th>Valor da hora</th>
+                                                    <th>Valor mensalidade</th>
+                                                    <th class="text-center" >Numero de vagas</th>
+                                                    <th>Ativa</th>
                                                     <th class="nosort text-right pr-25 ">Ações</th>
                                                   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($usuarios as $user): ?>
+                                                <?php foreach ($precificacoes as $categoria): ?>
                                                 <tr>
-                                                    <td><?php echo $user->id; ?></td>
-                                                    <td><?php echo $user->username; ?></td>
-                                                    <td><?php echo $user->email; ?></td>
-                                                    <td><?php echo $user->first_name; ?></td>
-                                                    <td><?php echo ($this->ion_auth->is_admin($user->id) ? 'Administrador' : 'Atendente' ); ?></td>
-
+                                                    <td><?php echo $categoria->precificacao_id; ?></td>
+                                                    <td><?php echo $categoria->precificacao_categoria; ?></td>
+                                                    <td><?php echo 'R$ &nbsp' . $categoria->precificacao_valor_hora; ?></td>
+                                                    <td><?php echo 'R$ &nbsp' . $categoria->precificacao_valor_mensalidade;?></td>
+                                                    <td class="text-center"><?php echo $categoria->precificacao_numero_vagas; ?></td>
+                                                    
                                                     <td>
-                                                        <?php echo ($user->active == 1 ? 
+                                                        <?php echo ($categoria->precificacao_ativa == 1 ? 
                                                         '<span class="badge badge-pill badge-success mb-1"><i class="fas fa-lock-open"></i> &nbsp; Sim</span>' 
                                                         : '<span class="badge badge-pill badge-warning mb-1"><i class="fas fa-lock"></i> &nbsp; Não</span>'); ?>
                                                         
@@ -108,7 +108,7 @@
                                                             data-bs-toggle="tooltip" 
                                                             data-bs-placement="bottom" 
                                                             title="Editar <?php echo $this->router->fetch_class(); ?>" 
-                                                            href="<?php echo base_url($this->router->fetch_class().'/core/'. $user->id); ?>" 
+                                                            href="<?php echo base_url($this->router->fetch_class().'/core/'. $categoria->precificacao_id); ?>" 
                                                             class="btn btn-icon btn-primary"
                                                         >
                                                             <i class="ik ik-edit-2"></i>
@@ -119,18 +119,18 @@
                                                             title="Excluir <?php echo $this->router->fetch_class(); ?>" 
                                                             class="btn btn-icon btn-danger"
                                                             data-toggle="modal" 
-                                                            data-target="#user-<?php echo $user->id; ?>"
+                                                            data-target="#categoria-<?php echo $categoria->precificacao_id; ?>"
                                                         >
                                                             <i class="ik ik-trash"></i>
                                                         </button> 
                                                     </td>                                                    
                                                 </tr>
 
-                                                    <div class="modal fade" id="user-<?php echo $user->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+                                                    <div class="modal fade" id="categoria-<?php echo $categoria->precificacao_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
                                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalCenterLabel"><i class="fas fa-exclamation-triangle text-danger" ></i>&nbsp;Você tem certeza que deseja excluir este usuario?</h5>
+                                                                    <h5 class="modal-title" id="exampleModalCenterLabel"><i class="fas fa-exclamation-triangle text-danger" ></i>&nbsp;Você tem certeza que deseja excluir esta categoria?</h5>
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                                 </div>
                                                                
@@ -147,7 +147,7 @@
                                                                         data-bs-toggle="tooltip" 
                                                                         data-bs-placement="bottom" 
                                                                         title="Excluir <?php echo $this->router->fetch_class(); ?>" 
-                                                                        href="<?php echo base_url($this->router->fetch_class().'/del/'. $user->id); ?>" 
+                                                                        href="<?php echo base_url($this->router->fetch_class().'/del/'. $categoria->precificacao_id); ?>" 
                                                                         class="btn  btn-danger"
                                                                     >
                                                                     Sim, EXCLUIR

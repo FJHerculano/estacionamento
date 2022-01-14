@@ -82,7 +82,7 @@ i  <!-- caminho Navbar -->
 
                                         <div class="col-md-6 mb-20">
                                                 <label >E-mail(Login)</label>
-                                                <input type="text" class="form-control" name="email" value="<?php echo(isset($usuario) ? $usuario->email : set_value('email')); ?>" >
+                                                <input type="email" class="form-control" name="email" value="<?php echo(isset($usuario) ? $usuario->email : set_value('email')); ?>" >
                                                 <?php echo form_error('email', '<div class="text-danger">', '</div>') ?>
                                         </div>
                                     </div>
@@ -153,8 +153,8 @@ i  <!-- caminho Navbar -->
 
                                         </div>
 
-                                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                    <button class="btn btn-light">Cancel</button>
+                                    <button type="submit" class="btn btn-primary mr-2">Salvar</button>
+                                    <button class="btn btn-info" href="<?php echo base_url($this->router->fetch_class()); ?>" >Voltar</button>
                                     </form>
                         </div>
                     </div>
