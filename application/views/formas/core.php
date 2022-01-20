@@ -52,44 +52,26 @@ i  <!-- caminho Navbar -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header"><?php echo(isset($precificacao) ? '<i class="ik ik-calendar ik-2 x"></i> &nbsp; Data da ultima alteração:&nbsp; ' .formata_data_banco_com_hora( $precificacao->precificacao_data_alteracao) : ''); ?></div>
+                        <div class="card-header"><?php echo(isset($forma) ? '<i class="ik ik-calendar ik-2 x"></i> &nbsp; Data da ultima alteração:&nbsp; ' .formata_data_banco_com_hora( $forma->forma_pagamento_data_alteracao) : ''); ?></div>
                         <div class="card-body">
                         <form class="forms-sample" name="form_core" method="POST">
                                     
                                     <!-- Primeira linha do form user -->
                                     <div class="form-group row">
+                                        <div class="col-md-8 mb-20">
+                                            <label >Nome da forma de pagamento </label>
+                                            <input type="text" class="form-control" name="forma_pagamento_nome" value="<?php echo(isset($forma) ? $forma->forma_pagamento_nome : set_value('forma_pagamento_nome')); ?>" >
+                                            <?php echo form_error('forma_pagamento_nome', '<div class="text-danger">', '</div>') ?>
+                                        </div>
+
                                         <div class="col-md-4 mb-20">
-                                            <label >Categoria</label>
-                                            <input type="text" class="form-control" name="precificacao_categoria" value="<?php echo(isset($precificacao) ? $precificacao->precificacao_categoria : set_value('precificacao_categoria')); ?>" >
-                                            <?php echo form_error('precificacao_categoria', '<div class="text-danger">', '</div>') ?>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <label >Valor hora</label>
-                                            <input type="text" class="form-control money" name="precificacao_valor_hora" value="<?php echo(isset($precificacao) ? $precificacao->precificacao_valor_hora : set_value('precificacao_valor_hora')); ?>" >
-                                            <?php echo form_error('precificacao_valor_hora', '<div class="text-danger">', '</div>') ?>
-                                        </div>                                        
-                                        
-                                        <div class="col-md-2 mb-20">
-                                            <label >Valor Mensalidade</label>
-                                            <input type="text" class="form-control money" name="precificacao_valor_mensalidade" value="<?php echo(isset($precificacao) ? $precificacao->precificacao_valor_mensalidade : set_value('precificacao_valor_mensalidade')); ?>" >
-                                            <?php echo form_error('precificacao_valor_mensalidade', '<div class="text-danger">', '</div>') ?>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
-                                            <label >Numero de Vagas</label>
-                                            <input type="number" class="form-control" name="precificacao_numero_vagas" value="<?php echo(isset($precificacao) ? $precificacao->precificacao_numero_vagas : set_value('precificacao_numero_vagas')); ?>" >
-                                            <?php echo form_error('precificacao_numero_vagas', '<div class="text-danger">', '</div>') ?>
-                                        </div>
-
-                                        <div class="col-md-2 mb-20">
                                             <label >Ativa</label>
-                                            <select class="form-control" name="precificacao_ativa">
+                                            <select class="form-control" name="forma_pagamento_ativa">
                                                 
-                                                <?php if(isset($precificacao)): ?>
+                                                <?php if(isset($forma)): ?>
 
-                                                    <option value="0" <?php echo ($precificacao->precificacao_ativa == 0 ? 'selected' : '')?>>Não</option>
-                                                    <option value="1" <?php echo ($precificacao->precificacao_ativa == 1 ? 'selected' : '')?>>Sim</option>
+                                                    <option value="0" <?php echo ($forma->forma_pagamento_ativa == 0 ? 'selected' : '')?>>Não</option>
+                                                    <option value="1" <?php echo ($forma->forma_pagamento_ativa == 1 ? 'selected' : '')?>>Sim</option>
                                                 
                                                 <?php else: ?>
 
@@ -105,10 +87,10 @@ i  <!-- caminho Navbar -->
                                     </div>
 
                                     <!-- Quinta linha do form user -->
-                                    <?php if(isset($precificacao)) : ?>
+                                    <?php if(isset($forma)) : ?>
                                         <div class="form-group row">
                                             <div class="col-md-12 mb-20">
-                                                <input type="hidden" class="form-control" name="precificacao_id" value="<?php echo $precificacao->precificacao_id; ?>" >
+                                                <input type="hidden" class="form-control" name="forma_pagamento_id" value="<?php echo $forma->forma_pagamento_id; ?>" >
                                             </div>
                                         </div>
                                     <?php endif; ?>

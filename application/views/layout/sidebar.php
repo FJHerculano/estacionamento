@@ -14,39 +14,38 @@
                     <div class="sidebar-content">
                         <div class="nav-container">
                             <nav id="main-menu-navigation" class="navigation-main">
-                                <div class="nav-lavel">Navigation</div>
-                                <div class="nav-item active">
-                                    <a href="index.html"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                                <div class="nav-lavel">Fast Park</div>
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'home' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
+                                    <a data-toggle="tooltip" data-placement="bottom" title="Tela inicial" href="<?php echo base_url('/'); ?>"><i class="ik ik-home"></i><span>Home</span></a>
                                 </div>
-                                <div class="nav-item">
-                                    <a href="pages/navbar.html"><i class="ik ik-menu"></i><span>Navigation</span> <span class="badge badge-success">New</span></a>
-                                </div>
-                                <div class="nav-item has-sub">
-                                    <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Widgets</span> <span class="badge badge-danger">150+</span></a>
-                                    <div class="submenu-content">
-                                        <a href="pages/widgets.html" class="menu-item">Basic</a>
-                                        <a href="pages/widget-statistic.html" class="menu-item">Statistic</a>
-                                        <a href="pages/widget-data.html" class="menu-item">Data</a>
-                                        <a href="pages/widget-chart.html" class="menu-item">Chart Widget</a>
-                                    </div>
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'mensalistas' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
+                                    <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar mensalistas" href="<?php echo base_url('mensalistas'); ?>"><i class="fas fa-users"></i><span>Mensalistas</span></a>
                                 </div>
 
                                 <div class="nav-lavel">Administração</div>
 
-                                <div class="nav-item">
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'precificacao' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?> ">
                                     <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Precificação" href="<?php echo base_url('precificacao'); ?>"><i class="ik ik-dollar-sign"></i><span>Precificações</span></a>
                                 </div>
 
-                                <div class="nav-item">
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'mensalidades' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?> ">
+                                    <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar mensalidades" href="<?php echo base_url('mensalidades'); ?>"><i class="fas fa-hand-holding-usd"></i><span>Mensalidades</span></a>
+                                </div>
+
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'usuarios' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
                                     <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Usuários" href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>usuários</span></a>
                                 </div>
 
-                                <div class="nav-item">
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'sistema' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
                                     <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Sistema" href="<?php echo base_url('sistema'); ?>"><i class="ik ik-settings"></i><span>Sistema</span></a>
+                                </div>
+
+                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'formas' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?> ">
+                                    <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar formas de pagamento" href="<?php echo base_url('formas'); ?>"><i class="fas fa-comment-dollar"></i><span>Formas de pagamento</span></a>
                                 </div>
 
                             </nav>
                         </div>
                     </div>
                 </div>
-                
+                 
