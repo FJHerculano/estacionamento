@@ -52,4 +52,57 @@ class Estacionar extends CI_Controller {
         
 	}
 
+    public function core($estacionar_id = NULL){
+
+        if(!$estacionar_id){
+            //cadastrando
+        }else{
+            //Encerrando um ticket
+            
+            //Verificação de existencia 
+            if(!$this->core_model->get_by_id('estacionar', array('estacionar_id' => $estacionar_id))){
+            
+                $this->session->set_flashdata('error', 'Ticket não encontrado para encerramento');
+                redirect($this->router->fetch_class());
+            
+            }else{
+            // Encerramento de um ticket 
+
+
+                $data = array(
+                    // titulo e subtitulo das paginas da aplicação 
+                    'titulo' => 'Encerrando o ticket',
+                    'sub_titulo' => 'Chegou a hora de encerrar um ticket cadastrado',
+                    'icone_view' => 'fas fa-parking',
+                    'texto_modal'=> 'Tem certeza que deseja encerrar esse ticket',
+                    
+                    'scripts' => array(
+                        'plugins/mask/jquery.mask.min.js',
+                        'plugins/mask/custom.js',
+                        'js/estacionar/estacionar.js'
+                    ),
+
+                    // listagem usando a biblioteca ion_auth
+                    'estacionado' => $this->core_model->get_by_id('estacionar', array('estacionar_id' => $estacionar_id)),
+                    'precificacoes' => $this->core_model->get_all('precificacoes', array('precificacao_ativa' => 1 )),
+                    'formas_pagamentos' => $this->core_model->get_all('formas_pagamentos', array('forma_pagamento_ativa' => 1 )),
+
+                );
+
+                // Para ver o que a biblioteca ion_auth traz de opções para nosso 
+                // autenticação
+                // echo '<pre>';
+                // print_r($data['estacionados']);
+                // exit();
+
+                $this->load->view('layout/header', $data);
+                $this->load->view('estacionar/core');
+                $this->load->view('layout/footer');
+
+            }
+        }
+
+        
+	}
+
 }
