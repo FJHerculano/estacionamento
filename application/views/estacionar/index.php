@@ -78,29 +78,25 @@
                                         <tr>
 
                                             <th>#</th>
-                                            <th>mensalista</th>
-                                            <th>CPF</th>
                                             <th>Categoria</th>
-                                            <th>Valor mensalidade</th>
-                                            <th>Data vencimento</th>
-                                            <th>Data pagamento</th>
+                                            <th>Valor hora</th>
+                                            <th>Placa</th>
+                                            <th>Forma pagamento</th>
                                             <th>status</th>
                                             <th class="nosort text-right pr-25 ">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($mensalidades as $mensalidade): ?>
+                                        <?php foreach ($estacionados as $estacionado): ?>
                                         <tr>
-                                            <td><?php echo $mensalidade->mensalidade_id; ?></td>
-                                            <td><i class="ik ik-eye text-info "></i>&nbsp;<a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Visualizar dados do mensalista <?php echo $mensalidade->mensalista_nome; ?>" href="<?php echo base_url('mensalistas/core/'.$mensalidade->mensalista_id); ?>"><?php echo $mensalidade->mensalista_nome; ?></a></td>
-                                            <td><?php echo $mensalidade->mensalista_cpf; ?></td>
-                                            <td><?php echo $mensalidade->precificacao_categoria; ?></td>
-                                            <td><?php echo "R$&nbsp;".$mensalidade->mensalidade_valor_mensalidade; ?></td>
-                                            <td><?php echo formata_data_banco_sem_hora($mensalidade->mensalidade_data_vencimento); ?></td>
-                                            <td><?php echo ($mensalidade->mensalidade_status == 1 ? formata_data_banco_sem_hora($mensalidade->mensalidade_data_pagamento) : 'Em aberto' ); ?></td>
+                                            <td><?php echo $estacionado->estacionar_id; ?></td>
+                                            <td><?php echo $estacionado->precificacao_categoria; ?></td>
+                                            <td><?php echo "R$&nbsp;".$estacionado->precificacao_valor_hora; ?></td>
+                                            <td><?php echo $estacionado->estacionar_placa_veiculo; ?></td>
+                                            <td><?php echo $estacionado->forma_pagamento_nome; ?></td>
 
                                             <td>
-                                                <?php echo ($mensalidade-> mensalidade_status == 1 ? 
+                                                <?php echo ($estacionado-> estacionar_status == 1 ? 
                                                 '<span class="badge badge-pill badge-success mb-1">   Paga</span>' 
                                                 : '<span class="badge badge-pill badge-warning mb-1"> Divida </span>'); ?>
                                                 
@@ -110,11 +106,11 @@
                                                 <a 
                                                     data-bs-toggle="tooltip" 
                                                     data-bs-placement="bottom" 
-                                                    title="<?php echo ($mensalidade->mensalidade_status == 1 ? 'Visualizar' : 'Editar')   ?> <?php echo $this->router->fetch_class(); ?>" 
-                                                    href="<?php echo base_url($this->router->fetch_class().'/core/'. $mensalidade->mensalidade_id); ?>" 
+                                                    title="<?php echo ($estacionado->estacionar_status == 1 ? 'Visualizar' : 'Editar')   ?> <?php echo $this->router->fetch_class(); ?>" 
+                                                    href="<?php echo base_url($this->router->fetch_class().'/core/'. $estacionado->estacionar_id); ?>" 
                                                     class="btn btn-icon btn-primary"
                                                 >
-                                                    <i class="<?php echo($mensalidade->mensalidade_status == 1 ? 'ik ik-eye' : 'ik ik-edit-2') ?>"></i>
+                                                    <i class="<?php echo($estacionado->estacionar_status == 1 ? 'ik ik-eye' : 'ik ik-edit-2') ?>"></i>
                                                 </a>
 
                                                 <button  
@@ -122,14 +118,14 @@
                                                     title="Excluir <?php echo $this->router->fetch_class(); ?>" 
                                                     class="btn btn-icon btn-danger"
                                                     data-toggle="modal" 
-                                                    data-target="#mensalidade-<?php echo $mensalidade->mensalidade_id; ?>"
+                                                    data-target="#estacionado-<?php echo $estacionado->estacionar_id; ?>"
                                                 >
                                                     <i class="ik ik-trash"></i>
                                                 </button> 
                                             </td>                                                    
                                         </tr>
 
-                                            <div class="modal fade" id="mensalidade-<?php echo $mensalidade->mensalidade_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
+                                            <div class="modal fade" id="estacionado-<?php echo $estacionado->estacionar_id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -150,7 +146,7 @@
                                                                 data-bs-toggle="tooltip" 
                                                                 data-bs-placement="bottom" 
                                                                 title="Excluir <?php echo $this->router->fetch_class(); ?>" 
-                                                                href="<?php echo base_url($this->router->fetch_class().'/del/'. $mensalidade->mensalidade_id); ?>" 
+                                                                href="<?php echo base_url($this->router->fetch_class().'/del/'. $estacionado->estacionar_id); ?>" 
                                                                 class="btn  btn-danger"
                                                             >
                                                             Sim, EXCLUIR
