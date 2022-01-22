@@ -160,9 +160,7 @@ i  <!-- caminho Navbar -->
                                      <div class="form-group row">
                                         <div class="col-md-12 mb-20">
                                             <label >Texto do ticket de estacionamento</label>
-                                            <textarea class="form-control" name="sistema_texto_ticket">
-                                                <?php echo(isset($sistema) ? $sistema->sistema_texto_ticket : set_value('sistema_texto_ticket')); ?>
-                                            </textarea>
+                                            <textarea class="form-control" name="sistema_texto_ticket"><?php echo(isset($sistema) ? $sistema->sistema_texto_ticket : set_value('sistema_texto_ticket')); ?></textarea>
                                             <?php echo form_error('sistema_texto_ticket', '<div class="text-danger">', '</div>') ?>
                                         </div>    
                                     </div>    

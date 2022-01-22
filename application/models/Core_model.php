@@ -36,7 +36,7 @@ class Core_model extends CI_Model{
         }   
     }
 
-    public function insert($table = NULL, $data = NULL){
+    public function insert($table = NULL, $data = NULL, $get_last_id = NULL){
 
          // condição de existencia da tabela e se é um  array
          if($table && $this->db->table_exists($table) && is_array($data)) {
@@ -44,6 +44,11 @@ class Core_model extends CI_Model{
             // se os dados validados na linha anterior existem, é realizada uma 
             //inserção
             $this->db->insert($table, $data);
+
+            // Armazenando na sessão o ultimo ID inserido na tabela
+            if($get_last_id){
+                $this->session->set_userdata('last_id', $this->db->insert_id());
+            }
 
             // Verificando se o banco de dados teve alguma linha afetada
             //se for maior que zero significa que teve alteração 

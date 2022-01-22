@@ -60,6 +60,7 @@
                 </div>
                 <?php endif; ?>
 
+                <!-- ROW com tabela listagem estacionados -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -93,7 +94,7 @@
                                             <td><?php echo $estacionado->precificacao_categoria; ?></td>
                                             <td><?php echo "R$&nbsp;".$estacionado->precificacao_valor_hora; ?></td>
                                             <td><?php echo $estacionado->estacionar_placa_veiculo; ?></td>
-                                            <td><?php echo $estacionado->forma_pagamento_nome; ?></td>
+                                            <td><?php echo ($estacionado-> estacionar_status == 1 ? $estacionado->forma_pagamento_nome : 'Em aberto'); ?></td>
 
                                             <td>
                                                 <?php echo ($estacionado-> estacionar_status == 1 ? 
@@ -102,11 +103,19 @@
                                                 
                                             </td>
                                             <td class="text-right" >
-                                                
+                                                <a  target="_blank" 
+                                                    data-bs-toggle="tooltip" 
+                                                    data-bs-placement="bottom" 
+                                                    title="Imprimir ticket" 
+                                                    href="<?php echo base_url($this->router->fetch_class(). '/pdf/'. $estacionado->estacionar_id ); ?>"
+                                                    class="btn btn-icon bg-dark text-white " 
+                                                >
+                                                    <i class="fas fa-print  "></i>
+                                                </a>
                                                 <a 
                                                     data-bs-toggle="tooltip" 
                                                     data-bs-placement="bottom" 
-                                                    title="<?php echo ($estacionado->estacionar_status == 1 ? 'Visualizar' : 'Editar')   ?> <?php echo $this->router->fetch_class(); ?>" 
+                                                    title="<?php echo ($estacionado->estacionar_status == 1 ? 'Visualizar' : 'Encerrar')?> ticket" 
                                                     href="<?php echo base_url($this->router->fetch_class().'/core/'. $estacionado->estacionar_id); ?>" 
                                                     class="btn btn-icon btn-primary"
                                                 >
@@ -115,7 +124,7 @@
 
                                                 <button  
                                                     type="button"
-                                                    title="Excluir <?php echo $this->router->fetch_class(); ?>" 
+                                                    title="Excluir ticket" 
                                                     class="btn btn-icon btn-danger"
                                                     data-toggle="modal" 
                                                     data-target="#estacionado-<?php echo $estacionado->estacionar_id; ?>"
@@ -164,6 +173,150 @@
                     </div>
                 </div>
 
+                <!--  -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header d-block text-center">SITUAÇÃO VAGAS</div>
+                            
+                            <div class="card-body">
+
+                            <div class="row">
+                                <!-- Primeiro card da view estacionar em vagas disponiveis-->
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <p class="text-center text-uppercase">Veículo pequeno</p>
+                                    <div class="widget social-widget">
+                                        
+                                        <div class="widget-body text-center">
+                                            <div class="content">
+                                                <i class="fas fa-car fa-3x text-blue" ></i>
+                                            </div>
+                                        </div>
+ 
+                                        <div>
+                                            <ul class="list-inline mt-15 text-center">
+                                                <?php for($i=1; $i <= $numero_vagas_pequeno->vagas; $i++ ): ?>
+
+                                                    <li class="list-inline-item" >
+                                                        <div class="widget social-widget bg-success vaga">
+                                                            <div class="widget-body">
+                                                                <div class="content">
+                                                                    <div class="number"><?php echo $i; ?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                <?php endfor; ?>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- Segundo card da view estacionar em vagas disponiveis-->
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <p class="text-center text-uppercase">Veículo Medio</p>
+                                    <div class="widget social-widget">
+                                        
+                                        <div class="widget-body text-center">
+                                            <div class="content">
+                                                <i class="fas fa-truck-pickup fa-3x text-blue" ></i>
+                                            </div>
+                                        </div>
+ 
+                                        <div>
+                                            <ul class="list-inline mt-15 text-center">
+                                                <?php for($i=1; $i <= $numero_vagas_medio->vagas; $i++ ): ?>
+
+                                                    <li class="list-inline-item" >
+                                                        <div class="widget social-widget bg-success vaga">
+                                                            <div class="widget-body">
+                                                                <div class="content">
+                                                                    <div class="number"><?php echo $i; ?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                <?php endfor; ?>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- terceiro card da view estacionar em vagas disponiveis-->
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <p class="text-center text-uppercase">Veículo grande</p>
+                                    <div class="widget social-widget">
+                                        
+                                        <div class="widget-body text-center">
+                                            <div class="content">
+                                                <i class="fas fa-truck fa-3x text-blue" ></i>
+                                            </div>
+                                        </div>
+ 
+                                        <div>
+                                            <ul class="list-inline mt-15 text-center">
+                                                <?php for($i=1; $i <= $numero_vagas_grande->vagas; $i++ ): ?>
+
+                                                    <li class="list-inline-item" >
+                                                        <div class="widget social-widget bg-success vaga">
+                                                            <div class="widget-body">
+                                                                <div class="content">
+                                                                    <div class="number"><?php echo $i; ?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                <?php endfor; ?>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- quarto card da view estacionar em vagas disponiveis-->
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <p class="text-center text-uppercase">Veículo Moto</p>
+                                    <div class="widget social-widget">
+                                        
+                                        <div class="widget-body text-center">
+                                            <div class="content">
+                                                <i class="fas fa-motorcycle fa-3x text-blue" ></i>
+                                            </div>
+                                        </div>
+ 
+                                        <div>
+                                            <ul class="list-inline mt-15 text-center">
+                                                <?php for($i=1; $i <= $numero_vagas_moto->vagas; $i++ ): ?>
+
+                                                    <li class="list-inline-item" >
+                                                        <div class="widget social-widget bg-success vaga">
+                                                            <div class="widget-body">
+                                                                <div class="content">
+                                                                    <div class="number"><?php echo $i; ?></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                <?php endfor; ?>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                               
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>
