@@ -99,12 +99,20 @@
                                             <td><?php echo formata_data_banco_sem_hora($mensalidade->mensalidade_data_vencimento); ?></td>
                                             <td><?php echo ($mensalidade->mensalidade_status == 1 ? formata_data_banco_sem_hora($mensalidade->mensalidade_data_pagamento) : 'Em aberto' ); ?></td>
 
-                                            <td>
-                                                <?php echo ($mensalidade-> mensalidade_status == 1 ? 
-                                                '<span class="badge badge-pill badge-success mb-1">   Paga</span>' 
-                                                : '<span class="badge badge-pill badge-warning mb-1"> Divida </span>'); ?>
-                                                
+                                            <td class="text-center">
+                                                <?php
+                                                    if($mensalidade-> mensalidade_status == 1){
+                                                        echo '<span class="badge badge-pill badge-success mb-1">Paga</span>' ;
+                                                    }else if(strtotime($mensalidade-> mensalidade_data_vencimento) > strtotime(date(Y-m-d))){
+                                                        echo '<span class="badge badge-pill badge-yellow mb-1">A receber</span>' ;
+                                                    }else if(strtotime($mensalidade-> mensalidade_data_vencimento) == strtotime(date(Y-m-d))){
+                                                        echo '<span class="badge badge-pill badge-info mb-1">Vence Hoje</span>' ;
+                                                    }else{
+                                                        echo '<span class="badge badge-pill badge-danger mb-1">Vencida</span>' ;   
+                                                    }
+                                                ?>
                                             </td>
+
                                             <td class="text-right" >
                                                 
                                                 <a 

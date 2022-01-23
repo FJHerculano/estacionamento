@@ -46,7 +46,6 @@ class Estacionar_model extends CI_Model{
     public function get_numero_vagas($precificacao_id = NULL){
         $this->db->select('precificacao_ativa');
         $this->db->select('precificacao_numero_vagas as vagas');
-        // $this->db->select_sum('age');
 
         $this->db->where('precificacao_id', $precificacao_id);
         return $this->db->get('precificacoes')->row();

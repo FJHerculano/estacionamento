@@ -247,14 +247,17 @@ $(document).ready(function() {
 }  
     var table = $('.data-table').DataTable({
 
-        'oLanguage': DATATABLE_PTBR,
+        "oLanguage": DATATABLE_PTBR,
 
         responsive: true,
         select: true,
         'aoColumnDefs': [{
             'bSortable': false,
             'aTargets': ['nosort']
-        }]
+        }],
+
+        "lengthMenu":[5, 10, 25, 50, 75, 100]
+
     });
 
 });    

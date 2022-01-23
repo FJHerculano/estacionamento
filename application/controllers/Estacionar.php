@@ -42,9 +42,17 @@ class Estacionar extends CI_Controller {
 
             //Inicio numero vagas por categoria
             'numero_vagas_pequeno' => $this->estacionar_model->get_numero_vagas(1),
+            'vagas_ocupadas_pequeno' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 1)),
+
             'numero_vagas_medio' => $this->estacionar_model->get_numero_vagas(2),
+            'vagas_ocupadas_medio' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 2)),
+
             'numero_vagas_grande' => $this->estacionar_model->get_numero_vagas(3),
+            'vagas_ocupadas_grande' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 3)),
+
             'numero_vagas_moto' => $this->estacionar_model->get_numero_vagas(4),
+            'vagas_ocupadas_moto' => $this->core_model->get_all('estacionar', array('estacionar_status' => 0, 'estacionar_precificacao_id' => 4)),
+
 		);
 
 		// Para ver o que a biblioteca ion_auth traz de opções para nosso 

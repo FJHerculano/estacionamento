@@ -58,8 +58,8 @@ class Usuarios extends CI_Controller {
 			// se usuario não existe cadastra um usuario
 			
 			// Validação de campos                                
-			$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[4]|max_length[20]');
-			$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[4]|max_length[20]');
+			$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[3]|max_length[20]');
+			$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[3]|max_length[20]');
 			$this->form_validation->set_rules('username','Usuario','trim|required|min_length[4]|max_length[30]|is_unique[users.username]');
 			$this->form_validation->set_rules('email','E-mail','trim|valid_email|required|min_length[5]|max_length[200]|is_unique[users.email]');
 			$this->form_validation->set_rules('password', 'Senha','trim|required|min_length[8]');
@@ -125,8 +125,8 @@ class Usuarios extends CI_Controller {
 				$perfil_atual = $this->ion_auth->get_users_groups($usuario_id)->row();
 
 				// Validação de campos                                
-				$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[4]|max_length[20]');
-				$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[4]|max_length[20]');
+				$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[3]|max_length[20]');
+				$this->form_validation->set_rules('last_name','Sobrenome','trim|required|min_length[3]|max_length[20]');
 				$this->form_validation->set_rules('username','Usuario','trim|required|min_length[4]|max_length[30]|callback_username_check');
 				$this->form_validation->set_rules('email','E-mail','trim|valid_email|required|min_length[5]|max_length[200]|callback_email_check');
 				$this->form_validation->set_rules('password', 'Senha','trim|min_length[8]');

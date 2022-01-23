@@ -173,7 +173,7 @@
                     </div>
                 </div>
 
-                <!--  -->
+                <!-- cards de vagas disponiveis   -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -184,27 +184,55 @@
                             <div class="row">
                                 <!-- Primeiro card da view estacionar em vagas disponiveis-->
                                 <div class="col-lg-3 col-md-4 col-6">
-                                    <p class="text-center text-uppercase">Veículo pequeno</p>
+                                    <p class="text-center text-uppercase">Veículo pequeno <?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? '<span class="text-danger font-weight-bold text-center small">&nbsp;<i class="fas fa-ban"></i>&nbsp;Desativado</span>' : ''); ?></p>
                                     <div class="widget social-widget">
                                         
                                         <div class="widget-body text-center">
                                             <div class="content">
-                                                <i class="fas fa-car fa-3x text-blue" ></i>
+                                                <i class="fas fa-car fa-3x text-primary" ></i>
                                             </div>
                                         </div>
  
                                         <div>
                                             <ul class="list-inline mt-15 text-center">
-                                                <?php for($i=1; $i <= $numero_vagas_pequeno->vagas; $i++ ): ?>
 
+                                                <?php 
+
+                                                    $ocupadas = array(); // armazena as vagas
+                                                    $placas = array();   // armazena as placas 
+
+                                                    foreach($vagas_ocupadas_pequeno as $vaga){
+
+                                                        $ocupadas[] = $vaga->estacionar_numero_vaga;
+                                                        $placas[$vaga->estacionar_numero_vaga] = $vaga->estacionar_placa_veiculo;
+
+                                                    }
+                                                
+                                                ?>
+
+                                                <?php for($i=1; $i <= $numero_vagas_pequeno->vagas; $i++ ): ?>
                                                     <li class="list-inline-item" >
-                                                        <div class="widget social-widget bg-success vaga">
-                                                            <div class="widget-body">
-                                                                <div class="content">
-                                                                    <div class="number"><?php echo $i; ?></div>
+
+                                                        <?php if(in_array($i, $ocupadas)): ?>
+                                                            <div class="widget social-widget bg-warning vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="Placa&nbsp;<?php echo $placas[$i] ?>">
+                                                                        <i class="fas fa-car fa-lg"></i>
+                                                                        
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        
+                                                        <?php else: ?>
+                                                            <div class="widget social-widget <?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? 'bg-google' : 'bg-success' ); ?> vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? 'Desativado' : 'Livre' ); ?>">
+                                                                        <div class="number"><?php echo ($numero_vagas_pequeno->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' : $i ); ?></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
+
                                                     </li>
 
                                                 <?php endfor; ?>
@@ -216,27 +244,55 @@
 
                                 <!-- Segundo card da view estacionar em vagas disponiveis-->
                                 <div class="col-lg-3 col-md-4 col-6">
-                                    <p class="text-center text-uppercase">Veículo Medio</p>
+                                <p class="text-center text-uppercase">Veículo médio <?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? '<span class="text-danger font-weight-bold text-center small">&nbsp;<i class="fas fa-ban"></i>&nbsp; Desativado</span>' : ''); ?></p>
                                     <div class="widget social-widget">
                                         
                                         <div class="widget-body text-center">
                                             <div class="content">
-                                                <i class="fas fa-truck-pickup fa-3x text-blue" ></i>
+                                                <i class="fas fa-truck-pickup fa-3x text-primary" ></i>
                                             </div>
                                         </div>
  
                                         <div>
                                             <ul class="list-inline mt-15 text-center">
+
+                                            <?php 
+
+                                                $ocupadas = array(); // armazena as vagas
+                                                $placas = array();   // armazena as placas 
+
+                                                foreach($vagas_ocupadas_medio as $vaga){
+
+                                                    $ocupadas[] = $vaga->estacionar_numero_vaga;
+                                                    $placas[$vaga->estacionar_numero_vaga] = $vaga->estacionar_placa_veiculo;
+
+                                                }
+
+                                            ?>
+
                                                 <?php for($i=1; $i <= $numero_vagas_medio->vagas; $i++ ): ?>
 
                                                     <li class="list-inline-item" >
-                                                        <div class="widget social-widget bg-success vaga">
-                                                            <div class="widget-body">
-                                                                <div class="content">
-                                                                    <div class="number"><?php echo $i; ?></div>
+
+                                                    <?php if(in_array($i, $ocupadas)): ?>
+                                                            <div class="widget social-widget bg-warning vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="Placa&nbsp;<?php echo $placas[$i] ?>">
+                                                                        <i class="fas fa-truck-pickup fa-lg"></i>
+                                                                        
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        
+                                                        <?php else: ?>
+                                                            <div class="widget social-widget <?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? 'bg-google' : 'bg-success' ); ?> vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? 'Desativado' : 'Livre' ); ?>">
+                                                                        <div class="number"><?php echo ($numero_vagas_medio->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' : $i ); ?></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </li>
 
                                                 <?php endfor; ?>
@@ -248,27 +304,52 @@
 
                                 <!-- terceiro card da view estacionar em vagas disponiveis-->
                                 <div class="col-lg-3 col-md-4 col-6">
-                                    <p class="text-center text-uppercase">Veículo grande</p>
+                                <p class="text-center text-uppercase">Veículo grande <?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? '<span class="text-danger font-weight-bold text-center small">&nbsp;<i class="fas fa-ban"></i>&nbsp; Desativado</span>' : ''); ?></p>
                                     <div class="widget social-widget">
-                                        
                                         <div class="widget-body text-center">
                                             <div class="content">
-                                                <i class="fas fa-truck fa-3x text-blue" ></i>
+                                                <i class="fas fa-truck fa-3x text-primary" ></i>
                                             </div>
                                         </div>
  
                                         <div>
                                             <ul class="list-inline mt-15 text-center">
-                                                <?php for($i=1; $i <= $numero_vagas_grande->vagas; $i++ ): ?>
+                                                <?php 
 
+                                                    $ocupadas = array(); // armazena as vagas
+                                                    $placas = array();   // armazena as placas 
+
+                                                    foreach($vagas_ocupadas_grande as $vaga){
+
+                                                        $ocupadas[] = $vaga->estacionar_numero_vaga;
+                                                        $placas[$vaga->estacionar_numero_vaga] = $vaga->estacionar_placa_veiculo;
+
+                                                    }
+
+                                                ?>
+
+                                                <?php for($i=1; $i <= $numero_vagas_grande->vagas; $i++ ): ?>
                                                     <li class="list-inline-item" >
-                                                        <div class="widget social-widget bg-success vaga">
-                                                            <div class="widget-body">
-                                                                <div class="content">
-                                                                    <div class="number"><?php echo $i; ?></div>
+
+                                                        <?php if(in_array($i, $ocupadas)): ?>
+                                                            <div class="widget social-widget bg-warning vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="Placa&nbsp;<?php echo $placas[$i] ?>">
+                                                                        <i class="fas fa-truck fa-lg"></i>
+                                                                        
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        
+                                                        <?php else: ?>
+                                                            <div class="widget social-widget <?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? 'bg-google' : 'bg-success' ); ?> vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? 'Desativado' : 'Livre' ); ?>">
+                                                                        <div class="number"><?php echo ($numero_vagas_grande->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' : $i ); ?></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </li>
 
                                                 <?php endfor; ?>
@@ -280,39 +361,56 @@
 
                                 <!-- quarto card da view estacionar em vagas disponiveis-->
                                 <div class="col-lg-3 col-md-4 col-6">
-                                    <p class="text-center text-uppercase">Veículo Moto</p>
+                                <p class="text-center text-uppercase">Veículo moto <?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? '<span class="text-danger font-weight-bold text-center small ">&nbsp;<i class="fas fa-ban"></i>&nbsp; Desativado</span>' : ''); ?></p>
                                     <div class="widget social-widget">
-                                        
                                         <div class="widget-body text-center">
                                             <div class="content">
-                                                <i class="fas fa-motorcycle fa-3x text-blue" ></i>
+                                                <i class="fas fa-motorcycle fa-3x text-primary" ></i>
                                             </div>
                                         </div>
  
                                         <div>
                                             <ul class="list-inline mt-15 text-center">
+                                            <?php 
+                                                $ocupadas = array(); // armazena as vagas
+                                                $placas = array();   // armazena as placas 
+
+                                                foreach($vagas_ocupadas_moto as $vaga){
+
+                                                    $ocupadas[] = $vaga->estacionar_numero_vaga;
+                                                    $placas[$vaga->estacionar_numero_vaga] = $vaga->estacionar_placa_veiculo;
+
+                                                }
+                                            ?>
                                                 <?php for($i=1; $i <= $numero_vagas_moto->vagas; $i++ ): ?>
 
                                                     <li class="list-inline-item" >
-                                                        <div class="widget social-widget bg-success vaga">
-                                                            <div class="widget-body">
-                                                                <div class="content">
-                                                                    <div class="number"><?php echo $i; ?></div>
+                                                    <?php if(in_array($i, $ocupadas)): ?>
+                                                            <div class="widget social-widget bg-warning vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="Placa&nbsp;<?php echo $placas[$i] ?>">
+                                                                        <i class="fas fa-motorcycle fa-lg"></i>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        
+                                                        <?php else: ?>
+                                                            <div class="widget social-widget <?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? 'bg-google' : 'bg-success' ); ?> vaga">
+                                                                <div class="widget-body">
+                                                                    <div class="content" data-toggle="tooltip" data-placement="bottom" title="<?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? 'Desativado' : 'Livre' ); ?>">
+                                                                        <div class="number"><?php echo ($numero_vagas_moto->precificacao_ativa == 0 ? '<i class="fas fa-ban"></i>' : $i ); ?></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php endif; ?>
                                                     </li>
-
                                                 <?php endfor; ?>
                                             </ul>
                                         </div>
-
                                     </div>
                                 </div>
-
                             </div>
                                
-
                             </div>
                         </div>
                     </div>
