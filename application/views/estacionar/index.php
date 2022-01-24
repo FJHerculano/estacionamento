@@ -74,7 +74,8 @@
                             </div>
                             
                             <div class="card-body">
-                                <table  class="table data-table">
+                                <div class="table-responsive-sm">
+                                <table  class="table data-table table-sm  pl-20 pr-20">
                                     <thead>
                                         <tr>
 
@@ -168,6 +169,7 @@
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>

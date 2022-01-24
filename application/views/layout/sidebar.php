@@ -1,11 +1,11 @@
 
                 <div class="app-sidebar colored">
                     <div class="sidebar-header">
-                        <a class="header-brand" href="index.html">
+                        <a class="header-brand" href="<?php echo base_url('/'); ?>">
                             <div class="logo-img">
-                               <img src="src/img/brand-white.svg" class="header-brand-img" alt="lavalite"> 
+                               <img src="<?php echo base_url('public/src/img/brand-white.svg'); ?>" class="header-brand-img" alt="Fast Park"> 
                             </div>
-                            <span class="text">ThemeKit</span>
+                            <span class="text">Fast Park</span>
                         </a>
                         <button type="button" class="nav-toggle"><i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i></button>
                         <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
