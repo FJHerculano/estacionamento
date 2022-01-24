@@ -10,6 +10,11 @@ class Precificacao extends CI_Controller {
 		if(!$this->ion_auth->logged_in()){
 			redirect('login');
 		}
+
+		if(!$this->ion_auth->is_admin()){
+			$this->session->set_flashdata('info', 'Você não tem permissão para acessar esse Menu');
+			redirect('/');
+		}
 	}
 	
 	// Metodo index que carrega na view usuarios a pagina e ja lista 

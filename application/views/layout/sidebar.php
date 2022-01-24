@@ -34,19 +34,21 @@
 
 
                                 <div class="nav-lavel">Administração</div>
+                                <?php if($this->ion_auth->is_admin()):?>
 
-                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'precificacao' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?> ">
-                                    <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Precificação" href="<?php echo base_url('precificacao'); ?>"><i class="ik ik-dollar-sign"></i><span>Precificações</span></a>
-                                </div>
+                                    <div class="nav-item <?php echo ($this->router->fetch_class() == 'precificacao' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?> ">
+                                        <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Precificação" href="<?php echo base_url('precificacao'); ?>"><i class="ik ik-dollar-sign"></i><span>Precificações</span></a>
+                                    </div>
 
-                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'usuarios' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
-                                    <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Usuários" href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>usuários</span></a>
-                                </div>
+                                    <div class="nav-item <?php echo ($this->router->fetch_class() == 'usuarios' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
+                                        <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Usuários" href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>usuários</span></a>
+                                    </div>
 
-                                <div class="nav-item <?php echo ($this->router->fetch_class() == 'sistema' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
-                                    <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Sistema" href="<?php echo base_url('sistema'); ?>"><i class="ik ik-settings"></i><span>Sistema</span></a>
-                                </div>
+                                    <div class="nav-item <?php echo ($this->router->fetch_class() == 'sistema' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?>">
+                                        <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar Sistema" href="<?php echo base_url('sistema'); ?>"><i class="ik ik-settings"></i><span>Sistema</span></a>
+                                    </div>
 
+                                <?php endif;?>
                                 <div class="nav-item <?php echo ($this->router->fetch_class() == 'formas' && $this->router->fetch_method() == 'index' ? 'active' : '' ); ?> ">
                                     <a data-toggle="tooltip" data-placement="bottom" title="Gerenciar formas de pagamento" href="<?php echo base_url('formas'); ?>"><i class="fas fa-comment-dollar"></i><span>Formas de pagamento</span></a>
                                 </div>

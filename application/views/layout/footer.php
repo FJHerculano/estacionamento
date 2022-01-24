@@ -9,7 +9,7 @@
                             <div class="row">
                                 <div class="col-md-4 ml-auto mr-auto">
                                     <div class="input-wrap">
-                                        <input type="text" id="quick-search" class="form-control" placeholder="Search..." />
+                                        <input type="text" id="quick-search" class="form-control" placeholder="Procurar..." />
                                         <i class="ik ik-search"></i>
                                     </div>
                                 </div>
@@ -18,66 +18,35 @@
                     </div>
                     <div class="modal-body d-flex align-items-center">
                         <div class="container">
-                            <div class="apps-wrap">
+                            <div class="apps-wrap" >
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                                    <a href="<?php echo base_url('/'); ?>"><i class="ik ik-home"></i><span>Home</span></a>
                                 </div>
-                                <div class="app-item dropdown">
-                                    <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ik ik-command"></i><span>Ui</span></a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
+                                
+                                <div class="app-item">
+                                    <a href="<?php echo base_url('estacionar'); ?>"><i class="fas fa-parking"></i><span>Estacionar</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-mail"></i><span>Message</span></a>
+                                    <a href="<?php echo base_url('mensalistas'); ?>"><i class="ik ik-users"></i><span>Mensalistas</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-users"></i><span>Accounts</span></a>
+                                    <a href="<?php echo base_url('mensalidades'); ?>"><i class="fas fa-hand-holding-usd"></i><span>Mensalidades</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-shopping-cart"></i><span>Sales</span></a>
+                                    <a href="<?php echo base_url('usuarios'); ?>"><i class="ik ik-users"></i><span>Usuarios</span></a>
+                                </div>
+                                
+                                <div class="app-item">
+                                    <a href="<?php echo base_url('precificacao'); ?>"><i class="ik ik-dollar-sign"></i><span>Precificações</span></a>
                                 </div>
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-briefcase"></i><span>Purchase</span></a>
+                                    <a href="<?php echo base_url('formas'); ?>"><i class="fas fa-comment-dollar"></i><span>Formas de pagamento</span></a>
                                 </div>
+
                                 <div class="app-item">
-                                    <a href="#"><i class="ik ik-server"></i><span>Menus</span></a>
+                                    <a href="<?php echo base_url('sistema'); ?>"><i class="ik ik-settings"></i><span>Sistema</span></a>
                                 </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-clipboard"></i><span>Pages</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-calendar"></i><span>Events</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-bell"></i><span>Notifications</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-pie-chart"></i><span>Reports</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-layers"></i><span>Tasks</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-edit"></i><span>Blogs</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
-                                </div>
-                                <div class="app-item">
-                                    <a href="#"><i class="ik ik-more-horizontal"></i><span>More</span></a>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>

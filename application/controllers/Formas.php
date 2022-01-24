@@ -40,6 +40,11 @@ class Formas extends CI_Controller {
     public function core($forma_pagamento_id = NULL)
 	{
 
+        if(!$this->ion_auth->is_admin()){
+			$this->session->set_flashdata('info', 'Você não tem permissão para editar ou criar forma de pagamento ');
+			redirect($this->router->fetch_class());
+		}
+
         if(!$forma_pagamento_id){
             //cadastrando
 
@@ -153,6 +158,12 @@ class Formas extends CI_Controller {
 
 
     public function del($forma_pagamento_id = NULL){
+
+        if(!$this->ion_auth->is_admin()){
+			$this->session->set_flashdata('info', 'Você não tem permissão para excluir ');
+			redirect($this->router->fetch_class());
+		}
+
         //Verifica se o id existe para editar 
         if(!$this->core_model->get_by_id('formas_pagamentos', array('forma_pagamento_id' => $forma_pagamento_id))){
             $this->session->set_flashdata('error', 'Forma de pagamento não encontrada');

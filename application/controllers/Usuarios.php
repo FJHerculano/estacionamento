@@ -17,6 +17,12 @@ class Usuarios extends CI_Controller {
 	public function index()
 	{
 
+
+		if(!$this->ion_auth->is_admin()){
+			$this->session->set_flashdata('info', 'Você não tem permissão para acessar esse Menu');
+			redirect('/');
+		}
+
 		$data = array(
 			// titulo e subtitulo das paginas da aplicação 
 			'titulo' => 'Usuários Cadastrados',
@@ -56,6 +62,12 @@ class Usuarios extends CI_Controller {
 		if(!$usuario_id){
 			
 			// se usuario não existe cadastra um usuario
+
+			// esse if refere-se ao controle de usuarios
+			if(!$this->ion_auth->is_admin()) {
+				$this->session->set_flashdata('info', 'Você não tem permissão para acessar esse menu');
+				redirect('/');
+			}
 			
 			// Validação de campos                                
 			$this->form_validation->set_rules('first_name','Nome','trim|required|min_length[3]|max_length[20]');
@@ -122,6 +134,12 @@ class Usuarios extends CI_Controller {
 			} else {
 				// Se entrou no else, é por que existe e vai ser editado
 
+				// esse if refere-se ao controle de usuarios
+				if($this->session->userdata('user_id') != $usuario_id && !$this->ion_auth->is_admin()) {
+					$this->session->set_flashdata('error', 'Você não tem permissão para editar um usuario cadastrado');
+					redirect('/');
+				}
+
 				$perfil_atual = $this->ion_auth->get_users_groups($usuario_id)->row();
 
 				// Validação de campos                                
@@ -135,15 +153,6 @@ class Usuarios extends CI_Controller {
 
 				if($this->form_validation->run()){
 
-				/*  [first_name] => Admin
-					[last_name] => istrator
-					[username] => administrator
-					[email] => admin@admin.com
-					[password] => 
-					[perfil] => 1
-					[active] => 1
-				*/
-
 				// array com dados do meu user
 				$data = elements(
 					array(
@@ -155,6 +164,12 @@ class Usuarios extends CI_Controller {
 						'active',
 					), $this->input->post()
 				);
+
+
+				// esse if refere-se ao controle de usuarios
+				if(!$this->ion_auth->is_admin()) {
+					unset($data['active']);
+				}
 
 				$password = $this->input->post('password');
 
@@ -178,11 +193,16 @@ class Usuarios extends CI_Controller {
 
 					$perfil_post = $this->input->post('perfil');
 
-					//se for diferente atualiza o grupo
-					if($perfil_atual->id != $perfil_post){
+					//se foi passado o 'perfil',então éadmin
+					if($perfil_post){
 
-						$this->ion_auth->remove_from_group($perfil_atual->id, $usuario_id);
-						$this->ion_auth->add_to_group($perfil_post, $usuario_id); 
+						//se for diferente atualiza o grupo
+						if($perfil_atual->id != $perfil_post){
+
+							$this->ion_auth->remove_from_group($perfil_atual->id, $usuario_id);
+							$this->ion_auth->add_to_group($perfil_post, $usuario_id); 
+
+						}
 
 					}
 					 
@@ -194,7 +214,12 @@ class Usuarios extends CI_Controller {
 
 				}
 
-				redirect($this->router->fetch_class());
+				if(!$this->ion_auth->is_admin()){
+					redirect('/');
+				}else{
+					redirect($this->router->fetch_class());
+				}
+
 
 				}else{
 					// Erro de validação
@@ -267,6 +292,12 @@ class Usuarios extends CI_Controller {
 
 	public function del($usuario_id = NULL){
 		
+		// esse if refere-se ao controle de usuarios
+		if(!$this->ion_auth->is_admin()) {
+			$this->session->set_flashdata('error', 'Você não tem permissão para excluir um usuario cadastrado');
+			redirect('/');
+		}
+
 		// Verificando se o id do usuario existe 
 		if(!$usuario_id || !$this->core_model->get_by_id('users', array('id' => $usuario_id))){
 

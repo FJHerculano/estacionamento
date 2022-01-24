@@ -10,6 +10,11 @@ class Sistema extends CI_Controller {
 		if(!$this->ion_auth->logged_in()){
 			redirect('login');
 		}
+
+        if(!$this->ion_auth->is_admin()){
+			$this->session->set_flashdata('info', 'Você não tem permissão para acessar esse Menu');
+			redirect('/');
+		}
 	}
 
 	public function index() {

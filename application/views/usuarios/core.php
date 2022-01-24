@@ -104,7 +104,9 @@ i  <!-- caminho Navbar -->
 
                                     <!-- Quarta linha do form user -->
                                     <div class="form-group row">
-                                        <div class="col-md-6 mb-20">
+
+                                        <?php if($this->ion_auth->is_admin()): ?>
+                                            <div class="col-md-6 mb-20">
                                                 <label >Perfil de Acesso</label>
                                                 <select class="form-control" name="perfil" id="">
 
@@ -122,10 +124,9 @@ i  <!-- caminho Navbar -->
                                                     <?php endif; ?>
 
                                                 </select>
-                                        </div>
+                                            </div>
 
-
-                                        <div class="col-md-6 mb-20">
+                                            <div class="col-md-6 mb-20">
                                                 <label >Usuario ativo</label>
                                                 <select class="form-control" name="active" id="">
                                                     <?php if(isset($usuario)): ?>
@@ -140,7 +141,10 @@ i  <!-- caminho Navbar -->
                                                     <?php endif;?>
                                                     
                                                 </select>
-                                        </div>
+                                            </div>
+                                        <?php endif; ?>
+
+                                       
 
                                         <!-- Quinta linha do form user -->
                                         <?php if(isset($usuario)) : ?>

@@ -192,8 +192,8 @@ class Mensalistas extends CI_Controller {
 
 				   if($this->db->table_exists('mensalidades')){
 
-					   if($this->core_model->get_by_id('mensalidades', array('mensalidade_mensalista_id' => $mensalista_id, 'mensalidade_status' => 0 ))){
-						   $this->session->set_flashdata('error', 'Mensalista com debito pedente em <i class="fas fa-users"></i>&nbsp;mensalidades não poderá ser desativado'); 
+					   if($this->core_model->get_by_id('mensalidades', array('mensalidade_mensalista_id' => $mensalista_id ))){
+						   $this->session->set_flashdata('error', 'Mensalista  não poderá ser desativado, pois esta atrelado a<i class="fas fa-hand-holding-usd"></i>&nbsp;mensalidades '); 
 						   redirect($this->router->fetch_class());
 					   }
 
@@ -360,6 +360,12 @@ class Mensalistas extends CI_Controller {
 
 	public function del($mensalista_id = NULL){
 
+		// Se não for admin não pode excluir um mensalista
+		if(!$this->ion_auth->is_admin()) {
+			$this->session->set_flashdata('info', 'Você não tem permissão para excluir um mensalista cadastrado');
+			redirect('/');
+		}
+
 		if(!$mensalista_id || !$this->core_model->get_by_id('mensalistas', array('mensalista_id' => $mensalista_id))){
 			$this->session->set_flashdata('error', 'mensalista não encontrado');
 			redirect($this->router->fetch_class());
@@ -367,6 +373,12 @@ class Mensalistas extends CI_Controller {
 
 		if($this->core_model->get_by_id('mensalistas', array('mensalista_id' => $mensalista_id, 'mensalista_ativo' => 1 ))){
 			$this->session->set_flashdata('error', 'Não é possivel excluir mensalista ativo');
+			redirect($this->router->fetch_class());
+		}
+
+
+		if($this->core_model->get_by_id('mensalidades', array('mensalidade_mensalista_id' => $mensalista_id))){
+			$this->session->set_flashdata('error', 'Não é possivel excluir esse mensalista, pois o mesmo está atrelado a &nbsp; <i class="fas fa-hand-holding-usd"></i>&nbsp; mensalidades');
 			redirect($this->router->fetch_class());
 		}
 
