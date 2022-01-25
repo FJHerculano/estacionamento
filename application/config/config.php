@@ -25,7 +25,9 @@ date_default_timezone_set('America/Sao_paulo');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/www/estacionamento/';
+//$config['base_url'] = 'http://localhost/www/estacionamento/';
+
+$config['base_url'] = 'https://bliny-fastpark.000webhostapp.com/';
 
 /*
 |--------------------------------------------------------------------------

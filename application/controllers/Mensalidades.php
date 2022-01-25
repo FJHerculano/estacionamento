@@ -13,6 +13,8 @@ class Mensalidades extends CI_Controller {
 
         // model para fazer join com precificação e mensalistas
         $this->load->model('mensalidades_model');
+
+        date_default_timezone_set('America/Sao_paulo');
 	}
 	
 	// Metodo index que carrega a view e ja lista todos 

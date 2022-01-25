@@ -105,9 +105,9 @@
                                                 <?php
                                                     if($mensalidade-> mensalidade_status == 1){
                                                         echo '<span class="badge badge-pill badge-success mb-1">Paga</span>' ;
-                                                    }else if(strtotime($mensalidade-> mensalidade_data_vencimento) > strtotime(date(Y-m-d))){
+                                                    }else if(strtotime($mensalidade-> mensalidade_data_vencimento) > strtotime(date('Y-m-d'))){
                                                         echo '<span class="badge badge-pill badge-yellow mb-1">A receber</span>' ;
-                                                    }else if(strtotime($mensalidade-> mensalidade_data_vencimento) == strtotime(date(Y-m-d))){
+                                                    }else if(strtotime($mensalidade-> mensalidade_data_vencimento) == strtotime(date('Y-m-d'))){
                                                         echo '<span class="badge badge-pill badge-info mb-1">Vence Hoje</span>' ;
                                                     }else{
                                                         echo '<span class="badge badge-pill badge-danger mb-1">Vencida</span>' ;   
